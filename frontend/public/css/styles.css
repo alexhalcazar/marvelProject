@@ -1,0 +1,11 @@
+body {
+    background-image: url('../images/marvelBackground.jpg');
+    background-repeat: no-repeat;
+    background-position: 100% 0%;
+}
+
+#image-display {
+    width: 500px;
+    height: 500px;
+    border: solid;
+}
