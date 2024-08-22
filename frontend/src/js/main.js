@@ -1,28 +1,31 @@
-document.getElementById('search-form').addEventListener('submit', async () => {
-    const character = document.getElementById('search-bar').value;
-    try {
-        const response = await fetch(
-            `/api/characters/search?name=${character}`
-        );
-        console.log('Fetch response:', response);
-        // Check if the response is OK
-        if (!response.ok) {
-            throw new Error(`HTTP error! status: ${response.status}`);
+document
+    .getElementById('search-form')
+    .addEventListener('submit', async (event) => {
+        // Prevent the form from reloading the page on submit, allowing the JS code to update the image and description
+        event.preventDefault();
+        const character = document.getElementById('search-bar').value;
+        try {
+            const response = await fetch(
+                `/api/characters/search?name=${character}`
+            );
+            // Check if the response is OK
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
+
+            // Convert the response body as JSON
+            const data = await response.json();
+            const path = data[0].thumbnail.path;
+            const ext = data[0].thumbnail.extension;
+            const text = data[0].description;
+            const imagePath = path + '.' + ext;
+
+            updateImage(imagePath);
+            updateDescription(text);
+        } catch (error) {
+            console.log(error);
         }
-
-        // Convert the response body as JSON
-        const data = await response.json();
-        const path = data[0].thumbnail.path;
-        const ext = data[0].thumbnail.extension;
-        const text = data[0].description;
-
-        const imagePath = path + '.' + ext;
-        updateImage(imagePath);
-        updateDescription(text);
-    } catch (error) {
-        console.log(error);
-    }
-});
+    });
 
 const updateImage = (imgPath) => {
     try {
