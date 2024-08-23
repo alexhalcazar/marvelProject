@@ -4,6 +4,7 @@ import { fileURLToPath } from 'url';
 import marvelRouter from './backend/routes/characterRoutes.js';
 
 const __filename = fileURLToPath(import.meta.url);
+console.log('The file name:', __filename);
 const __dirname = path.dirname(__filename);
 
 const app = express();
@@ -15,6 +16,12 @@ app.use(express.static(path.join(__dirname, '/frontend/src')));
 app.get('/', (req, res) => {
     res.sendFile(
         path.join(__dirname, 'frontend', 'src', 'views', 'index.html')
+    );
+});
+
+app.get('/marvelSnap', (req, res) => {
+    res.sendFile(
+        path.join(__dirname, 'frontend', 'src', 'views', 'marvelSnap.html')
     );
 });
 
