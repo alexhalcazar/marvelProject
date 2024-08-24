@@ -4,7 +4,6 @@ import { fileURLToPath } from 'url';
 import marvelRouter from './backend/routes/characterRoutes.js';
 
 const __filename = fileURLToPath(import.meta.url);
-console.log('The file name:', __filename);
 const __dirname = path.dirname(__filename);
 
 const app = express();
