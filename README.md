@@ -44,7 +44,7 @@ Alex Alcazar
 
 <ul>
     <li>Add a Marvel Snap dedicated page</li>
-    <li>Setup a MySQL Database</li>
+    <li>Setup a MongoDB Database</li>
     <li>Integrate a library to interact with the database</li>
     <li>Create a search card functionality</li>
     <li>Improve the frontend</li>
