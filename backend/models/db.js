@@ -8,9 +8,7 @@ const mongo = () => {
     let db = null;
 
     const url = `mongodb+srv://${username}:${password}@cluster0.eprmy.mongodb.net/test?retryWrites=true&w=majority&appName=Cluster0`;
-    console.log(url);
     const connect = async () => {
-        // connect
         try {
             const client = new MongoClient(url);
             await client.connect();
@@ -20,8 +18,21 @@ const mongo = () => {
             console.log(error);
         }
     };
+
+    const find = async (query) => {
+        try {
+            if (!query) {
+                return await db.collection('set').find();
+            } else {
+                return await db.collection('set').find({ query });
+            }
+        } catch (error) {
+            console.log(error);
+        }
+    };
     return {
-        connect
+        connect,
+        find
     };
 };
 
