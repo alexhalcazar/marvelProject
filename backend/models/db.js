@@ -24,7 +24,7 @@ const mongo = () => {
             if (!query) {
                 return await db.collection('set').find();
             } else {
-                return await db.collection('set').find({ query });
+                return await db.collection('set').find({ character: query });
             }
         } catch (error) {
             console.log(error);
