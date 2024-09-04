@@ -8,7 +8,6 @@ export const searchCard = async (req, res) => {
         const response = await db.find(card);
         const documents = await response.toArray();
         res.json(documents);
-        return documents;
     } catch (error) {
         console.log(error);
     }
