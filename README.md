@@ -43,9 +43,8 @@ Alex Alcazar
 ## TODOS
 
 <ul>
-    <li>Add a Marvel Snap dedicated page</li>
-    <li>Setup a MongoDB Database</li>
-    <li>Integrate a library to interact with the database</li>
-    <li>Create a search card functionality</li>
+    <li>Implement search suggestion as an autocomplete feature</li>
+    <li>Add Pagination for displaying cards</li>
+    <li>Implement sorting and filtering for snap cards</li>
     <li>Improve the frontend</li>
 </ul>
