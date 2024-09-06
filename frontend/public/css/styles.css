@@ -4,13 +4,14 @@ body {
 
 .page-search {
     background-image: url('../images/marvelBackground.jpg');
-    background-position: 100% 30%;
+    background-size: cover;
 }
 
 .page-snap {
     background-image: url('../images/snapBackground.jpg');
     background-position: 50% 0%;
 }
+
 #image-display {
     width: 500px;
     height: 500px;
@@ -21,4 +22,8 @@ nav ul {
     list-style-type: none;
     font-size: 20px;
     border-bottom: 1px solid black;
+}
+
+li {
+    display: inline-block;
 }

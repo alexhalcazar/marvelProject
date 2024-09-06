@@ -4,6 +4,7 @@
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <link href="css/styles.css" rel="stylesheet" />
+        <script src="js/snap.js" type="module" defer></script>
         <title>Marvel Snap</title>
     </head>
     <body class="page-snap">
@@ -15,5 +16,11 @@
                 </li>
             </ul>
         </nav>
+        <form id="search-data">
+            <label for="search-bar">Search Database</label>
+            <input type="text" name="search-bar" id="search-bar" />
+            <button type="submit">Search</button>
+        </form>
+        <div id="collection-list"></div>
     </body>
 </html>

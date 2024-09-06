@@ -2,6 +2,7 @@ import express from 'express';
 import path from 'path';
 import { fileURLToPath } from 'url';
 import characterRouter from './backend/routes/characterRoutes.js';
+import snapRouter from './backend/routes/snapRoutes.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -25,7 +26,8 @@ app.get('/marvelSnap', (req, res) => {
 });
 
 app.use('/api/characters', characterRouter);
+app.use('/database', snapRouter);
 
-app.listen(port, () => {
+app.listen(port, async () => {
     console.log(`server is listening on port ${port}`);
 });
