@@ -32,7 +32,7 @@ searchForm.addEventListener('input', (event) => {
 
     if (input.length > 2) {
         // update search suggestions box
-        debounceLog();
+        debounceSearch(input);
     }
 });
 
@@ -65,5 +65,31 @@ const debounce = (cb, delay = 1000) => {
         }, delay);
     };
 };
-// Will convert this to make an API call to get search recommendations for auto-complete
-const debounceLog = debounce(() => console.log('Hello'), 1000);
+
+const debounceSearch = debounce(async (input) => {
+    try {
+        const response = await fetch(
+            `api/characters/startsWith?string=${input}`
+        );
+        if (!response) {
+            throw new Error(`Http error! status: ${response.status}`);
+        } else {
+            const searchSuggestions = await response.json();
+            updateRecommendations(searchSuggestions);
+        }
+    } catch (error) {
+        console.log(error);
+    }
+}, 1000);
+
+const updateRecommendations = (list) => {
+    const divElement = document.querySelector('.result-box');
+    const ulElement = divElement.querySelector('ul');
+    // prevent old recommendations from stacking
+    ulElement.innerHTML = '';
+    list.forEach((item) => {
+        const listElement = document.createElement('li');
+        listElement.textContent = item;
+        ulElement.appendChild(listElement);
+    });
+};
