@@ -1,20 +1,20 @@
-document
-    .getElementById('search-data')
-    .addEventListener('submit', async (event) => {
-        event.preventDefault();
-        const card = document.getElementById('search-bar').value;
-        const div = document.getElementById('collection-list');
-        // clear any old searches
-        div.innerHTML = '';
+const searchForm = document.getElementById('search-data');
 
-        try {
-            const response = await fetch(`/database/find?card=${card}`);
-            const data = await response.json();
-            cardResults(card, data);
-        } catch (error) {
-            console.log(error);
-        }
-    });
+searchForm.addEventListener('submit', async (event) => {
+    event.preventDefault();
+    const card = document.getElementById('marvel-search').value;
+    const div = document.getElementById('collection-list');
+    // clear any old searches
+    div.innerHTML = '';
+
+    try {
+        const response = await fetch(`/database/find?card=${card}`);
+        const data = await response.json();
+        cardResults(card, data);
+    } catch (error) {
+        console.log(error);
+    }
+});
 
 const cardResults = (card, cardData) => {
     try {
