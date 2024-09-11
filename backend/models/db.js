@@ -24,7 +24,10 @@ const mongo = () => {
             if (!query) {
                 return await db.collection('set').find();
             } else {
-                return await db.collection('set').find({ character: query });
+                const regexString = new RegExp(query);
+                return await db
+                    .collection('set')
+                    .find({ character: regexString });
             }
         } catch (error) {
             console.log(error);
