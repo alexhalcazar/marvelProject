@@ -1,3 +1,5 @@
+import { debounce, updateRecommendations } from './shared.js';
+
 const searchForm = document.getElementById('search-form');
 
 searchForm.addEventListener('submit', async (event) => {
@@ -55,17 +57,6 @@ const updateDescription = (text) => {
     }
 };
 
-const debounce = (cb, delay = 1000) => {
-    let timeout;
-
-    return (argument) => {
-        clearTimeout(timeout);
-        timeout = setTimeout(() => {
-            cb(argument);
-        }, delay);
-    };
-};
-
 const debounceSearch = debounce(async (input) => {
     try {
         const response = await fetch(
@@ -81,15 +72,3 @@ const debounceSearch = debounce(async (input) => {
         console.log(error);
     }
 }, 1000);
-
-const updateRecommendations = (list) => {
-    const divElement = document.querySelector('.result-box');
-    const ulElement = divElement.querySelector('ul');
-    // prevent old recommendations from stacking
-    ulElement.innerHTML = '';
-    list.forEach((item) => {
-        const listElement = document.createElement('li');
-        listElement.textContent = item;
-        ulElement.appendChild(listElement);
-    });
-};
