@@ -7,7 +7,7 @@
         <script src="js/snap.js" type="module" defer></script>
         <title>Marvel Snap</title>
     </head>
-    <body class="page-snap">
+    <body class="snap-bg">
         <nav>
             <ul>
                 <li><a href="/">Search Character</a></li>
@@ -16,11 +16,25 @@
                 </li>
             </ul>
         </nav>
-        <form id="search-data">
-            <label for="search-bar">Search Database</label>
-            <input type="text" name="search-bar" id="search-bar" />
-            <button type="submit">Search</button>
-        </form>
+        <div class="search-box">
+            <div class="row">
+                <form id="search-data">
+                    <input
+                        type="text"
+                        id="marvel-search"
+                        class="input-box"
+                        placeholder="Search Character"
+                    />
+                    <button type="submit">Search</button>
+                </form>
+            </div>
+            <div class="result-box">
+                <ul>
+                    <!-- <li> elements will be generated 
+                        based on search results -->
+                </ul>
+            </div>
+        </div>
         <div id="collection-list"></div>
     </body>
 </html>

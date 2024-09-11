@@ -7,7 +7,7 @@
         <script src="js/main.js" type="module" defer></script>
         <title>Main</title>
     </head>
-    <body class="page-search">
+    <body class="index-bg">
         <nav>
             <ul>
                 <li>
@@ -18,19 +18,34 @@
                 </li>
             </ul>
         </nav>
-        <h1>The Main Page</h1>
-        <form id="search-form">
-            <label for="search-bar">Character Search Bar</label>
-            <input type="text" name="search-bar" id="search-bar" />
-            <button type="submit">Search</button>
-        </form>
+        <div class="p-row">
+            <div class="search-box">
+                <div class="row">
+                    <form id="search-form">
+                        <input
+                            type="text"
+                            class="input-box"
+                            id="character-value"
+                            placeholder="Search Character"
+                        />
+                        <button type="submit">Search</button>
+                    </form>
+                </div>
+                <div class="result-box">
+                    <ul>
+                        <!-- <li> elements will be generated 
+                            based on search results -->
+                    </ul>
+                </div>
+            </div>
+            <p id="description"></p>
+        </div>
+
         <img
+            class="character-display"
             src="images/iconMarvel.jpg"
             alt="marvelIcon"
-            width="500"
-            height="600"
             id="portrait"
         />
-        <p id="description">Image</p>
     </body>
 </html>

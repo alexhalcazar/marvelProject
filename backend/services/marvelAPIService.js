@@ -15,14 +15,30 @@ const generateHash = (ts, privateKey, key) => {
 export const getCharacter = async (character) => {
     try {
         const ts = Date.now().toString();
-
         const hash = generateHash(ts, privateKey, publicKey);
-
         const url = `http://gateway.marvel.com/v1/public/characters?ts=${ts}&apikey=${publicKey}&hash=${hash}&name=${character}`;
-
         const response = await axios.get(url, { timeout: 10000 });
 
         return response.data.data.results;
+    } catch (error) {
+        console.log(error);
+    }
+};
+
+export const getRecommendatons = async (string) => {
+    try {
+        const ts = Date.now().toString();
+        const hash = generateHash(ts, privateKey, publicKey);
+        const url = `http://gateway.marvel.com/v1/public/characters?ts=${ts}&apikey=${publicKey}&hash=${hash}&nameStartsWith=${string}`;
+        const response = await axios.get(url, { timeout: 10000 });
+
+        const results = response.data.data.results;
+        const recommendations = [];
+        results.forEach((element) => {
+            recommendations.push(element.name);
+        });
+
+        return recommendations;
     } catch (error) {
         console.log(error);
     }
