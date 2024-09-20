@@ -1,21 +1,19 @@
-import { debounce, updateRecommendations } from './shared.js';
+import { clearResults, debounce, updateRecommendations } from './shared.js';
 
 const searchForm = document.getElementById('search-form');
 
 searchForm.addEventListener('submit', async (event) => {
-    // Prevent the form from reloading the page on submit, allowing the JS code to update the image and description
+    // prevent the form from reloading the page on submit, allowing the JS code to update the image and description
     event.preventDefault();
     const character = document.getElementById('character-value').value;
     try {
         const response = await fetch(
             `/api/characters/search?name=${character}`
         );
-        // Check if the response is OK
         if (!response.ok) {
             throw new Error(`HTTP error! status: ${response.status}`);
         }
-
-        // Convert the response body as JSON
+        // convert the response body as JSON
         const data = await response.json();
         const path = data[0].thumbnail.path;
         const ext = data[0].thumbnail.extension;
@@ -24,6 +22,7 @@ searchForm.addEventListener('submit', async (event) => {
 
         updateImage(imagePath);
         updateDescription(text);
+        clearResults();
     } catch (error) {
         console.log(error);
     }
@@ -35,6 +34,8 @@ searchForm.addEventListener('input', (event) => {
     if (input.length > 2) {
         // update search suggestions box
         debounceSearch(input);
+    } else {
+        clearResults();
     }
 });
 

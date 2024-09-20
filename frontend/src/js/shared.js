@@ -17,6 +17,16 @@ export const updateRecommendations = (list) => {
     list.forEach((item) => {
         const listElement = document.createElement('li');
         listElement.textContent = item;
+        listElement.addEventListener('click', () => {
+            const searchInput = document.getElementById('character-value');
+            searchInput.value = item;
+        });
         ulElement.appendChild(listElement);
     });
+};
+
+export const clearResults = () => {
+    const divElement = document.querySelector('.result-box');
+    const ulElement = divElement.querySelector('ul');
+    ulElement.innerHTML = '';
 };

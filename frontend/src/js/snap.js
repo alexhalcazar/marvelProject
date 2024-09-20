@@ -1,4 +1,4 @@
-import { debounce, updateRecommendations } from './shared.js';
+import { clearResults, debounce, updateRecommendations } from './shared.js';
 
 const searchForm = document.getElementById('search-data');
 
@@ -8,23 +8,25 @@ searchForm.addEventListener('submit', async (event) => {
     const div = document.getElementById('collection-list');
     // clear any old searches
     div.innerHTML = '';
-
     try {
         const response = await fetch(`/database/find?card=${card}`);
         const data = await response.json();
         cardResults(card, data);
+        clearResults();
     } catch (error) {
         console.log(error);
     }
 });
 
 searchForm.addEventListener('input', (event) => {
-    event.preventDefault();
     const input = event.target.value;
     const query = `^${input}`;
     try {
         if (input.length > 2) {
+            // update search suggestions box
             debounceSearch(query);
+        } else {
+            clearResults();
         }
     } catch (error) {
         console.log(error);
@@ -50,8 +52,8 @@ const displayImage = (cardData) => {
     const imgElement = document.createElement('img');
     imgElement.src = cardData.imgPath;
     imgElement.alt = cardData.character;
-    imgElement.width = '300';
-    imgElement.height = '300';
+    imgElement.width = '200';
+    imgElement.height = '200';
     div.appendChild(imgElement);
 };
 
@@ -68,10 +70,19 @@ const debounceSearch = debounce(async (input) => {
                 const card = recommendation.character;
                 cardRecommendations.push(card);
             });
-            console.log('Our card recommendations', cardRecommendations);
             updateRecommendations(cardRecommendations);
         }
     } catch (error) {
         console.log(error);
     }
 }, 1000);
+
+window.onload = async () => {
+    try {
+        const response = await fetch(`/database/find?card=`);
+        const data = await response.json();
+        cardResults(undefined, data);
+    } catch (error) {
+        console.log(error);
+    }
+};
