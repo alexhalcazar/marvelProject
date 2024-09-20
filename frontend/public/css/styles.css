@@ -1,19 +1,17 @@
 body {
     background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    min-height: 100vh;
 }
 
 .index-bg {
     background-image: url('../images/marvelBackground.webp');
-    background-size: cover;
-    background-position: center;
     background-color: #800303;
-    height: 100vh;
 }
 
 .snap-bg {
     background-image: url('../images/snapBackground.jpg');
-    height: 100vh;
-    background-position: center;
 }
 
 nav ul {
@@ -27,33 +25,47 @@ nav ul li {
     padding-left: 50px;
 }
 
-.index-bg nav ul li a {
-    display: inline-block;
-    color: white;
-}
-
 li {
     list-style-type: none;
 }
 
 a {
     text-decoration: none;
+    display: inline-block;
 }
-.p-row {
-    padding: 10px 20px;
+
+.index-bg nav ul li a {
+    color: white;
+}
+
+.wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    min-height: 100vh;
+}
+
+.flex-container {
     display: flex;
 }
 
 .search-box {
     background-color: white;
-    border: 15px purple;
     width: 500px;
     border-radius: 5px;
     flex-shrink: 0;
+    margin: 10px 20px;
+    padding: 10px 20px 0px 20px;
 }
 
-.row {
-    padding: 10px 20px;
+.result-box ul {
+    margin-bottom: 0;
+    border-top: 1px solid black;
+}
+
+.result-box ul li {
+    cursor: pointer;
+    padding: 3px;
 }
 
 #search-form {
@@ -64,7 +76,7 @@ a {
     display: flex;
 }
 
-.input-box {
+.input-field {
     flex: 1;
     height: 50px;
     border: 0;
@@ -78,10 +90,7 @@ a {
 }
 
 .character-display {
-    width: 450px;
-    height: 450px;
-    position: absolute;
-    bottom: 10px;
-    left: 50%;
-    transform: translateX(-40%);
+    width: 600px;
+    height: 550px;
+    margin: 0 auto;
 }

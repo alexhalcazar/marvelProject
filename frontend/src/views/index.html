@@ -18,34 +18,34 @@
                 </li>
             </ul>
         </nav>
-        <div class="p-row">
-            <div class="search-box">
-                <div class="row">
+        <div class="wrapper">
+            <div class="flex-container">
+                <div class="search-box">
                     <form id="search-form">
                         <input
                             type="text"
-                            class="input-box"
+                            class="input-field"
                             id="character-value"
                             placeholder="Search Character"
+                            autocomplete="off"
                         />
                         <button type="submit">Search</button>
                     </form>
+                    <div class="result-box">
+                        <ul>
+                            <!-- <li> elements will be generated 
+                                based on search results -->
+                        </ul>
+                    </div>
                 </div>
-                <div class="result-box">
-                    <ul>
-                        <!-- <li> elements will be generated 
-                            based on search results -->
-                    </ul>
-                </div>
+                <p id="description"></p>
             </div>
-            <p id="description"></p>
+            <img
+                class="character-display"
+                src="images/iconMarvel.jpg"
+                alt="marvelIcon"
+                id="portrait"
+            />
         </div>
-
-        <img
-            class="character-display"
-            src="images/iconMarvel.jpg"
-            alt="marvelIcon"
-            id="portrait"
-        />
     </body>
 </html>
