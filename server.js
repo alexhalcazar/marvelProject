@@ -8,7 +8,7 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 const app = express();
-const port = 3000;
+const port = 80;
 
 app.use(express.static(path.join(__dirname, '/frontend/public')));
 app.use(express.static(path.join(__dirname, '/frontend/src')));
@@ -28,6 +28,6 @@ app.get('/marvelSnap', (req, res) => {
 app.use('/api/characters', characterRouter);
 app.use('/database', snapRouter);
 
-app.listen(port, async () => {
-    console.log(`server is listening on port ${port}`);
+app.listen(port, '0.0.0.0', async () => {
+    console.log(`server is listening on http://0.0.0.0 ${port}`);
 });
