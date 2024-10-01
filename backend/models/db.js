@@ -7,7 +7,7 @@ const password = process.env.DB_PASSWORD;
 const mongo = () => {
     let db = null;
 
-    const url = `mongodb+srv://${username}:${password}@cluster0.eprmy.mongodb.net/test?retryWrites=true&w=majority&appName=Cluster0`;
+    const url = `mongodb+srv://${username}:${password}@cluster0.eprmy.mongodb.net/marvelSnap?retryWrites=true&w=majority&appName=Cluster0`;
     const connect = async () => {
         try {
             const client = new MongoClient(url);
@@ -22,11 +22,11 @@ const mongo = () => {
     const find = async (query) => {
         try {
             if (!query) {
-                return await db.collection('set').find();
+                return await db.collection('startercards').find();
             } else {
                 const regexString = new RegExp(query);
                 return await db
-                    .collection('set')
+                    .collection('startercards')
                     .find({ character: regexString });
             }
         } catch (error) {
