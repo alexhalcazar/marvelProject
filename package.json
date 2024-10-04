@@ -5,7 +5,8 @@
     "main": "apiCall.js",
     "scripts": {
         "test": "echo \"Error: no test specified\" && exit 1",
-        "dev": "nodemon --watch frontend/src/views/*.html --exec \"node server.js\""
+        "dev": "nodemon --watch frontend/src/views/*.html --exec \"node server.js\"",
+        "start": "node server.js"
     },
     "type": "module",
     "author": "Alex Alcazar",
