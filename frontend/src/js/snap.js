@@ -52,8 +52,7 @@ const displayImage = (cardData) => {
     const imgElement = document.createElement('img');
     imgElement.src = cardData.imgPath;
     imgElement.alt = cardData.character;
-    imgElement.width = '200';
-    imgElement.height = '200';
+    imgElement.className = 'snap-cards';
     div.appendChild(imgElement);
 };
 
