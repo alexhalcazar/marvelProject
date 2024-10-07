@@ -38,22 +38,17 @@ a {
     color: white;
 }
 
-.wrapper {
+.flex-container {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     min-height: 100vh;
 }
 
-.flex-container {
-    display: flex;
-}
-
 .search-box {
     background-color: white;
-    width: 500px;
+    width: 50%;
     border-radius: 5px;
-    flex-shrink: 0;
     margin: 10px 20px;
     padding: 10px 20px 0px 20px;
 }
@@ -83,14 +78,43 @@ a {
     outline: 0;
     font-size: 18px;
     color: #333;
+    width: 100%;
 }
 
 #description {
     margin: 10px;
+    color: white;
 }
 
 .character-display {
-    width: 600px;
-    height: 550px;
+    min-width: 300px;
+    width: 40vw;
+    max-width: 600px;
+    height: 40vw;
+    min-height: 300px;
+    max-height: 550px;
     margin: 0 auto;
+}
+
+@media (max-width: 480px) {
+    .search-box {
+        width: 80%;
+    }
+
+    .input-field {
+        width: 80%;
+    }
+}
+
+.snap-cards {
+    max-width: 25%;
+    height: auto; /* Maintain aspect ratio */
+    display: block; /* Ensure images are block elements */
+    margin: 10px auto; /* Center images with some margin */
+}
+
+#collection-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
 }
