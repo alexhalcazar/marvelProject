@@ -57,7 +57,6 @@ Alex Alcazar
 ## TODOS
 
 <ul>
-    <li>Correct search suggestion as an autocomplete feature</li>
     <li>Add Pagination for displaying cards</li>
     <li>Implement sorting and filtering for snap cards</li>
     <li>Improve the frontend</li>

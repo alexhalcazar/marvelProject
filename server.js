@@ -29,5 +29,5 @@ app.use('/api/characters', characterRouter);
 app.use('/database', snapRouter);
 
 app.listen(port, '0.0.0.0', async () => {
-    console.log(`server is listening on port${port}`);
+    console.log(`server is listening on port ${port}`);
 });
