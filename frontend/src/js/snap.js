@@ -10,7 +10,12 @@ searchForm.addEventListener('submit', async (event) => {
     div.innerHTML = '';
     try {
         const response = await fetch(`/database/find?card=${card}`);
+        console.log('Response status:', response.status);
         const data = await response.json();
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        console.log('Our response data:', data);
         cardResults(card, data);
         clearResults();
     } catch (error) {
