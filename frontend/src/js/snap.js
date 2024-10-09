@@ -4,7 +4,7 @@ const searchForm = document.getElementById('search-data');
 
 searchForm.addEventListener('submit', async (event) => {
     event.preventDefault();
-    const card = document.getElementById('marvel-search').value;
+    const card = document.getElementById('character-value').value;
     const div = document.getElementById('collection-list');
     // clear any old searches
     div.innerHTML = '';
