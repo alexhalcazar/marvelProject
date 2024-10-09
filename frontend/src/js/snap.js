@@ -37,9 +37,11 @@ const cardResults = (card, cardData) => {
     try {
         if (!card) {
             for (const data of cardData) {
+                console.log('Card data:', cardData);
                 displayImage(data);
             }
         } else {
+            console.log('Card data:', cardData);
             displayImage(cardData[0]);
         }
     } catch (error) {
