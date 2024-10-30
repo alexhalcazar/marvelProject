@@ -1,4 +1,9 @@
-import { clearResults, debounce, updateRecommendations } from './shared.js';
+import {
+    clearResults,
+    invalidSearch,
+    debounce,
+    updateRecommendations
+} from './shared.js';
 
 const searchForm = document.getElementById('search-data');
 
@@ -10,9 +15,13 @@ searchForm.addEventListener('submit', async (event) => {
     div.innerHTML = '';
     try {
         const response = await fetch(`/database/find?card=${card}`);
-        const data = await response.json();
         if (!response.ok) {
             throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        const data = await response.json();
+        if (data.length === 0) {
+            invalidSearch(card);
+            throw new Error('Invalid Search Query');
         }
         cardResults(card, data);
         clearResults();
@@ -24,29 +33,21 @@ searchForm.addEventListener('submit', async (event) => {
 searchForm.addEventListener('input', (event) => {
     const input = event.target.value;
     const query = `^${input}`;
-    try {
-        if (input.length > 2) {
-            // update search suggestions box
-            debounceSearch(query);
-        } else {
-            clearResults();
-        }
-    } catch (error) {
-        console.log(error);
+    if (input.length > 2) {
+        // update search suggestions box
+        debounceSearch(query);
+    } else {
+        clearResults();
     }
 });
 
 const cardResults = (card, cardData) => {
-    try {
-        if (!card) {
-            for (const data of cardData) {
-                displayImage(data);
-            }
-        } else {
-            displayImage(cardData[0]);
+    if (!card) {
+        for (const data of cardData) {
+            displayImage(data);
         }
-    } catch (error) {
-        console.log(error);
+    } else {
+        displayImage(cardData[0]);
     }
 };
 
@@ -82,9 +83,12 @@ const debounceSearch = debounce(async (input) => {
 window.onload = async () => {
     try {
         const response = await fetch(`/database/find?card=`);
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+        }
         const data = await response.json();
         cardResults(undefined, data);
     } catch (error) {
-        console.log(error);
+        console.log('Window onload', error);
     }
 };

@@ -4,13 +4,13 @@ import { getRecommendatons } from '../services/marvelAPIService.js';
 export const searchCharacter = async (req, res) => {
     try {
         const character = req.query.name;
-        const data = await getCharacter(character);
-        return res.json(data);
+        if (character) {
+            const data = await getCharacter(character);
+            return res.json(data);
+        }
     } catch (error) {
-        res.status(500).json({
-            message: 'Error fetching character data',
-            error
-        });
+        console.log('API', error);
+        res.status(500).json({ error: 'API Error' });
     }
 };
 
@@ -20,9 +20,7 @@ export const searchRecommendation = async (req, res) => {
         const data = await getRecommendatons(string);
         return res.json(data);
     } catch (error) {
-        res.status(500).json({
-            message: 'Error fetching character data',
-            error
-        });
+        console.log('API', error);
+        res.status(500).json({ error: 'API Error' });
     }
 };

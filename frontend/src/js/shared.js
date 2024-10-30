@@ -30,3 +30,13 @@ export const clearResults = () => {
     const ulElement = divElement.querySelector('ul');
     ulElement.innerHTML = '';
 };
+
+export const invalidSearch = (query) => {
+    clearResults();
+    const divElement = document.querySelector('.result-box');
+    const ulElement = divElement.querySelector('ul');
+    const message = `No matching search for '${query}'`;
+    const listElement = document.createElement('li');
+    listElement.textContent = message;
+    ulElement.appendChild(listElement);
+};
