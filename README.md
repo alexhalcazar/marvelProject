@@ -35,16 +35,8 @@ You can use this server to explore and interact with the website.
 
 ## Live Development
 
-The Marvel Project is live! You can visit the website at:
-
-[Live Marvel Project](http://marvel-app.us-west-1.elasticbeanstalk.com)
-
-Feel free to explore the site and try out its features, including
-
-<ul>
-    <li>Searching Marvel characters which interacts with the Marvel API</li>
-    <li>Searching Marvel snap cards which interacts with a MongoDB database</li>
-</ul>
+The Marvel Project was launched using AWS Beanstalk. However, due to staying under  
+the free tier limits, the project is no longer live at the moment.
 
 ## Reporting Issues
 
