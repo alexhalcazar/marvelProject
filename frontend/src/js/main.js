@@ -1,4 +1,9 @@
-import { clearResults, debounce, updateRecommendations } from './shared.js';
+import {
+    clearResults,
+    invalidSearch,
+    debounce,
+    updateRecommendations
+} from './shared.js';
 
 const searchForm = document.getElementById('search-form');
 
@@ -6,6 +11,9 @@ searchForm.addEventListener('submit', async (event) => {
     // prevent the form from reloading the page on submit, allowing the JS code to update the image and description
     event.preventDefault();
     const character = document.getElementById('character-value').value;
+    if (!character) {
+        return;
+    }
     try {
         const response = await fetch(
             `/api/characters/search?name=${character}`
@@ -15,6 +23,10 @@ searchForm.addEventListener('submit', async (event) => {
         }
         // convert the response body as JSON
         const data = await response.json();
+        if (data.length === 0) {
+            invalidSearch(character);
+            throw new Error('Invalid Search Query');
+        }
         const path = data[0].thumbnail.path;
         const ext = data[0].thumbnail.extension;
         const text = data[0].description;
@@ -40,22 +52,14 @@ searchForm.addEventListener('input', (event) => {
 });
 
 const updateImage = (imgPath) => {
-    try {
-        const imgElement = document.getElementById('portrait');
-        imgElement.src = imgPath;
-        imgElement.alt = 'character portrait';
-    } catch (error) {
-        console.log(error);
-    }
+    const imgElement = document.getElementById('portrait');
+    imgElement.src = imgPath;
+    imgElement.alt = 'character portrait';
 };
 
 const updateDescription = (text) => {
-    try {
-        const pElement = document.getElementById('description');
-        pElement.textContent = text;
-    } catch (error) {
-        console.log(error);
-    }
+    const pElement = document.getElementById('description');
+    pElement.textContent = text;
 };
 
 const debounceSearch = debounce(async (input) => {
