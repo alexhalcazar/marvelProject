@@ -8,8 +8,6 @@ export const searchCard = async (req, res) => {
     if (req.method === 'GET') {
         query = req.param.query;
     }
-    if (query) {
-    }
     const db = mongo();
     try {
         await db.connect();
