@@ -26,10 +26,11 @@ const mongo = () => {
             if (!query) {
                 return await db.collection('startercards').find();
             } else {
-                const regexString = new RegExp(query);
-                return await db
-                    .collection('startercards')
-                    .find({ character: regexString });
+                if (query.character) {
+                    const regexString = new RegExp(query.character);
+                    query.character = regexString;
+                }
+                return await db.collection('startercards').find(query);
             }
         } catch (error) {
             console.log('Failed to query database:', error.message);
