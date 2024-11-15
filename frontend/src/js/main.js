@@ -1,5 +1,5 @@
 import {
-    clearResults,
+    clearRecommendations,
     invalidSearch,
     debounce,
     updateRecommendations
@@ -34,7 +34,7 @@ searchForm.addEventListener('submit', async (event) => {
 
         updateImage(imagePath);
         updateDescription(text);
-        clearResults();
+        clearRecommendations();
     } catch (error) {
         console.log(error);
     }
@@ -47,7 +47,7 @@ searchForm.addEventListener('input', (event) => {
         // update search suggestions box
         debounceSearch(input);
     } else {
-        clearResults();
+        clearRecommendations();
     }
 });
 
