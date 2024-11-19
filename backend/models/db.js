@@ -26,8 +26,13 @@ const mongo = () => {
             if (!query) {
                 return await db.collection('startercards').find();
             } else {
+                let regexString;
+                if (query.$and && query.$and.character) {
+                    regexString = new RegExp(query.$and.character);
+                    query.$and.character = regexString;
+                }
                 if (query.character) {
-                    const regexString = new RegExp(query.character);
+                    regexString = new RegExp(query.character);
                     query.character = regexString;
                 }
                 return await db.collection('startercards').find(query);
