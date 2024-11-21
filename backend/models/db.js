@@ -23,10 +23,16 @@ const mongo = () => {
 
     const find = async (query) => {
         try {
+            let regexString;
             if (!query) {
-                return await db.collection('startercards').find();
+                return await db.collection('marvelCards').find();
+            } else if (typeof query === 'string') {
+                // doing a search by character name
+                regexString = new RegExp(query);
+                query = { character: regexString };
+                return await db.collection('marvelCards').find(query);
             } else {
-                let regexString;
+                console.log('Our query', query);
                 if (query.$and && query.$and.character) {
                     regexString = new RegExp(query.$and.character);
                     query.$and.character = regexString;
@@ -35,7 +41,36 @@ const mongo = () => {
                     regexString = new RegExp(query.character);
                     query.character = regexString;
                 }
-                return await db.collection('startercards').find(query);
+                if (query.sorting) {
+                    const sortOptions = query.sorting;
+                    const sortObject = {};
+                    if (sortOptions[0] === 1) {
+                        sortObject['cost'] = 1;
+                    }
+                    if (sortOptions[0] === -1) {
+                        sortObject['cost'] = -1;
+                    }
+                    if (sortOptions[1] === 1) {
+                        sortObject['power'] = 1;
+                    }
+                    if (sortOptions[1] === -1) {
+                        sortObject['power'] = -1;
+                    }
+                    if (sortOptions[2] === 1) {
+                        sortObject['series'] = 1;
+                    }
+                    if (sortOptions[2] === -1) {
+                        sortObject['series'] = -1;
+                    }
+                    // remove the sorting key before passing query into mongodb find method
+                    delete query.sorting;
+                    return await db
+                        .collection('marvelCards')
+                        .find(query)
+                        .sort(sortObject);
+                } else {
+                    return await db.collection('marvelCards').find(query);
+                }
             }
         } catch (error) {
             console.log('Failed to query database:', error.message);

@@ -6,6 +6,8 @@ import {
     clearCards
 } from './shared.js';
 
+import { createFilterObject } from '../utils/queryUtil.js';
+
 const searchForm = document.getElementById('search-data');
 const allFilters = document.querySelectorAll('[name^="filter"]');
 
@@ -90,6 +92,7 @@ const debounceSearch = debounce(async (input) => {
 const getAllFilters = () => {
     const costFilters = [];
     const powerFilters = [];
+    const sortFilters = [0, 0, 0];
     const character = document
         .getElementById('character-value')
         .value.toLowerCase();
@@ -103,70 +106,52 @@ const getAllFilters = () => {
         if (filter.name === 'filter-card-power' && filter.checked) {
             powerFilters.push(Number(filter.value));
         }
+        if (
+            filter.name === 'filter-sort-cost' &&
+            filter.value === 'ascending'
+        ) {
+            sortFilters[0] = 1;
+        }
+        if (
+            filter.name === 'filter-sort-cost' &&
+            filter.value === 'descending'
+        ) {
+            sortFilters[0] = -1;
+        }
+        if (
+            filter.name === 'filter-sort-power' &&
+            filter.value === 'ascending'
+        ) {
+            sortFilters[1] = 1;
+        }
+        if (
+            filter.name === 'filter-sort-power' &&
+            filter.value === 'descending'
+        ) {
+            sortFilters[1] = -1;
+        }
+        if (
+            filter.name === 'filter-sort-series' &&
+            filter.value === 'ascending'
+        ) {
+            sortFilters[2] = 1;
+        }
+        if (
+            filter.name === 'filter-sort-series' &&
+            filter.value === 'descending'
+        ) {
+            sortFilters[2] = -1;
+        }
     });
 
     const filters = createFilterObject(
         costFilters,
         powerFilters,
         character,
-        series
+        series,
+        sortFilters
     );
     return filters;
-};
-
-const createFilterObject = (costs, powers, character, series) => {
-    const filterObject = {};
-    if (costs.includes(7) || powers.includes(7)) {
-        let object = {};
-        // nested queries for our $and mongodb operator
-        const items = [];
-        if (character) {
-            object['character'] = '^' + character;
-            items.push(object);
-        }
-        if (series !== 'all') {
-            object['series'] = series;
-            items.push(object);
-        }
-        if (costs.length > 0) {
-            if (costs.includes(7)) {
-                object['$or'] = [
-                    { cost: { $in: costs } },
-                    { cost: { $gt: 6 } }
-                ];
-            } else {
-                object['cost'] = { $in: costs };
-            }
-            items.push(object);
-        }
-        if (powers.length > 0) {
-            if (powers.includes(7)) {
-                object['$or'] = [
-                    { power: { $in: powers } },
-                    { power: { $gt: 6 } }
-                ];
-            } else {
-                object['power'] = { $in: powers };
-            }
-            items.push(object);
-        }
-        filterObject['$and'] = items;
-    } else {
-        if (character) {
-            filterObject['character'] = '^' + character;
-        }
-        if (costs.length > 0) {
-            filterObject['cost'] = { $in: costs };
-        }
-        if (powers.length > 0) {
-            filterObject['power'] = { $in: powers };
-        }
-        if (series !== 'all') {
-            filterObject['series'] = series;
-        }
-    }
-
-    return filterObject;
 };
 
 const getCards = async () => {
