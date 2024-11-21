@@ -1,18 +1,20 @@
 import {
-    clearResults,
+    clearRecommendations,
     invalidSearch,
     debounce,
-    updateRecommendations
+    updateRecommendations,
+    clearCards
 } from './shared.js';
 
+import { createFilterObject } from '../utils/queryUtil.js';
+
 const searchForm = document.getElementById('search-data');
+const allFilters = document.querySelectorAll('[name^="filter"]');
 
 searchForm.addEventListener('submit', async (event) => {
     event.preventDefault();
     const card = document.getElementById('character-value').value;
-    const div = document.getElementById('collection-list');
-    // clear any old searches
-    div.innerHTML = '';
+    clearCards();
     try {
         const response = await fetch(`/database/find?card=${card}`);
         if (!response.ok) {
@@ -23,8 +25,8 @@ searchForm.addEventListener('submit', async (event) => {
             invalidSearch(card);
             throw new Error('Invalid Search Query');
         }
-        cardResults(card, data);
-        clearResults();
+        cardResults(data);
+        clearRecommendations();
     } catch (error) {
         console.log(error);
     }
@@ -37,12 +39,19 @@ searchForm.addEventListener('input', (event) => {
         // update search suggestions box
         debounceSearch(query);
     } else {
-        clearResults();
+        clearRecommendations();
     }
 });
 
-const cardResults = (card, cardData) => {
-    if (!card) {
+allFilters.forEach((filter) => {
+    filter.addEventListener('change', async () => {
+        clearCards();
+        getCards();
+    });
+});
+
+const cardResults = (cardData) => {
+    if (cardData.length > 1) {
         for (const data of cardData) {
             displayImage(data);
         }
@@ -80,6 +89,90 @@ const debounceSearch = debounce(async (input) => {
     }
 }, 1000);
 
+const getAllFilters = () => {
+    const costFilters = [];
+    const powerFilters = [];
+    const sortFilters = [0, 0, 0];
+    const character = document
+        .getElementById('character-value')
+        .value.toLowerCase();
+    const series = document.getElementById('series').value;
+
+    const selections = document.querySelectorAll('[name^="filter"]');
+    selections.forEach((filter) => {
+        if (filter.name === 'filter-card-cost' && filter.checked) {
+            costFilters.push(Number(filter.value));
+        }
+        if (filter.name === 'filter-card-power' && filter.checked) {
+            powerFilters.push(Number(filter.value));
+        }
+        if (
+            filter.name === 'filter-sort-cost' &&
+            filter.value === 'ascending'
+        ) {
+            sortFilters[0] = 1;
+        }
+        if (
+            filter.name === 'filter-sort-cost' &&
+            filter.value === 'descending'
+        ) {
+            sortFilters[0] = -1;
+        }
+        if (
+            filter.name === 'filter-sort-power' &&
+            filter.value === 'ascending'
+        ) {
+            sortFilters[1] = 1;
+        }
+        if (
+            filter.name === 'filter-sort-power' &&
+            filter.value === 'descending'
+        ) {
+            sortFilters[1] = -1;
+        }
+        if (
+            filter.name === 'filter-sort-series' &&
+            filter.value === 'ascending'
+        ) {
+            sortFilters[2] = 1;
+        }
+        if (
+            filter.name === 'filter-sort-series' &&
+            filter.value === 'descending'
+        ) {
+            sortFilters[2] = -1;
+        }
+    });
+
+    const filters = createFilterObject(
+        costFilters,
+        powerFilters,
+        character,
+        series,
+        sortFilters
+    );
+    return filters;
+};
+
+const getCards = async () => {
+    const query = getAllFilters();
+    try {
+        const response = await fetch(`/database/find`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(query)
+        });
+
+        const data = await response.json();
+        cardResults(data);
+        clearRecommendations();
+    } catch (error) {
+        console.log(error);
+    }
+};
+
 window.onload = async () => {
     try {
         const response = await fetch(`/database/find?card=`);
@@ -87,7 +180,7 @@ window.onload = async () => {
             throw new Error(`HTTP error! status: ${response.status}`);
         }
         const data = await response.json();
-        cardResults(undefined, data);
+        cardResults(data);
     } catch (error) {
         console.log('Window onload', error);
     }
