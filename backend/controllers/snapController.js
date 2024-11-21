@@ -6,7 +6,7 @@ export const searchCard = async (req, res) => {
         query = req.body;
     }
     if (req.method === 'GET') {
-        query = req.param.query;
+        query = req.query.card?.toLowerCase();
     }
     const db = mongo();
     try {
