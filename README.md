@@ -42,7 +42,7 @@ The Marvel Project was launched using **AWS Services**:
 3. Database: The backend connects to a MongoDB Atlas cluster for data storage.
 
 You can access the deployed web application using the following link:  
-[marvel-project](http://marvel-project.com).
+[marvel-project](http://www.marvel-project.com).
 
 ## Reporting Issues
 
