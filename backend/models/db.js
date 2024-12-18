@@ -32,7 +32,6 @@ const mongo = () => {
                 query = { character: regexString };
                 return await db.collection('marvelCards').find(query);
             } else {
-                console.log('Our query', query);
                 if (query.$and && query.$and.character) {
                     regexString = new RegExp(query.$and.character);
                     query.$and.character = regexString;
