@@ -34,10 +34,9 @@ searchForm.addEventListener('submit', async (event) => {
 
 searchForm.addEventListener('input', (event) => {
     const input = event.target.value;
-    const query = `^${input}`;
     if (input.length > 2) {
         // update search suggestions box
-        debounceSearch(query);
+        debounceSearch(input);
     } else {
         clearRecommendations();
     }
