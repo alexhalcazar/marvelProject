@@ -51,11 +51,3 @@ If you encounter any issues or have suggestions for improvement, please [create 
 ## Authors
 
 Alex Alcazar
-
-## TODOS
-
-<ul>
-    <li>Add Pagination for displaying cards</li>
-    <li>Implement sorting and filtering for snap cards</li>
-    <li>Improve the frontend</li>
-</ul>
