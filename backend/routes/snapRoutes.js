@@ -2,7 +2,6 @@ import express from 'express';
 import { searchCard } from '../controllers/snapController.js';
 
 const router = express.Router();
-router.post('/find', searchCard);
-router.get('/find', searchCard);
+router.route('/find').get(searchCard).post(searchCard);
 
 export default router;
