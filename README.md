@@ -33,10 +33,16 @@ This command should now be executed within the 'marvelProject' folder.
 Open your web browser and navigate to [local host](http://localhost:3000). <br>
 You can use this server to explore and interact with the website.
 
-## Live Development
+## Deployment
 
-The Marvel Project was launched using AWS Beanstalk. However, due to staying under  
-the free tier limits, the project is no longer live at the moment.
+The Marvel Project was launched using **AWS Services**:
+
+1. Frontend: Hosted on AWS S3 as a static website.
+2. Backend: Refractored to run as AWS Lambda functions and exposed via AWS API Gateway.
+3. Database: The backend connects to a MongoDB Atlas cluster for data storage.
+
+You can access the deployed web application using the following link:  
+[marvel-project](http://marvel-project.com).
 
 ## Reporting Issues
 
