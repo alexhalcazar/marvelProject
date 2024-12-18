@@ -1,5 +1,7 @@
-import { getCharacter } from '../services/marvelAPIService.js';
-import { getRecommendatons } from '../services/marvelAPIService.js';
+import {
+    getRecommendatons,
+    getCharacter
+} from '../services/marvelAPIService.js';
 
 export const searchCharacter = async (req, res) => {
     try {
