@@ -11,7 +11,7 @@ export const createFilterObject = (
         // nested queries for our $and mongodb operator
         const items = [];
         if (character) {
-            object['character'] = '^' + character;
+            object['character'] = character;
             items.push(object);
         }
         if (series !== 'all') {
@@ -43,7 +43,7 @@ export const createFilterObject = (
         filterObject['$and'] = items;
     } else {
         if (character) {
-            filterObject['character'] = '^' + character;
+            filterObject['character'] = character;
         }
         if (costs.length > 0) {
             filterObject['cost'] = { $in: costs };
