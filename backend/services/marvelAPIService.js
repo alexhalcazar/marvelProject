@@ -16,7 +16,7 @@ export const getCharacter = async (character) => {
     try {
         const ts = Date.now().toString();
         const hash = generateHash(ts, privateKey, publicKey);
-        const url = `http://gateway.marvel.com/v1/public/characters?ts=${ts}&apikey=${publicKey}&hash=${hash}&name=${character}`;
+        const url = `https://gateway.marvel.com/v1/public/characters?ts=${ts}&apikey=${publicKey}&hash=${hash}&name=${character}`;
         const response = await axios.get(url, { timeout: 10000 });
 
         return response.data.data.results;
@@ -30,7 +30,7 @@ export const getRecommendatons = async (string) => {
     try {
         const ts = Date.now().toString();
         const hash = generateHash(ts, privateKey, publicKey);
-        const url = `http://gateway.marvel.com/v1/public/characters?ts=${ts}&apikey=${publicKey}&hash=${hash}&nameStartsWith=${string}`;
+        const url = `https://gateway.marvel.com/v1/public/characters?ts=${ts}&apikey=${publicKey}&hash=${hash}&nameStartsWith=${string}`;
         const response = await axios.get(url, { timeout: 10000 });
 
         const results = response.data.data.results;
