@@ -19,6 +19,12 @@ app.get('/', (req, res) => {
     );
 });
 
+app.get('/characters', (req, res) => {
+    res.sendFile(
+        path.join(__dirname, 'frontend', 'src', 'views', 'characters.html')
+    );
+});
+
 app.get('/marvelSnap', (req, res) => {
     res.sendFile(
         path.join(__dirname, 'frontend', 'src', 'views', 'marvelSnap.html')

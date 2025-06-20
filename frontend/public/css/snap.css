@@ -1,0 +1,28 @@
+html,
+body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    background-image: url('../images/backgrounds/snapBackground.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.top-bg {
+    padding-top: 80px;
+    text-align: center;
+}
+
+.snap-cards {
+    max-width: 25%;
+    height: auto;
+    display: block;
+    margin: 10px auto;
+}
+
+#collection-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}

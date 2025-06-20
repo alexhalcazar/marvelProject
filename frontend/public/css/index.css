@@ -1,0 +1,32 @@
+.top-bg {
+    padding-top: 80px;
+    text-align: center;
+    background-color: white;
+}
+
+.mid-bg {
+    background-color: #ed1d24;
+}
+
+.bottom-bg {
+    background-position: center top;
+    background-image: url('../images/backgrounds/marvel-pattern.jpeg');
+    background-size: cover;
+}
+
+p {
+    font-size: 2em;
+    color: red;
+}
+
+img {
+    width: 200px;
+    height: auto;
+    cursor: pointer;
+}
+
+@media screen and (max-width: 807px) {
+    img {
+        width: 100px;
+    }
+}

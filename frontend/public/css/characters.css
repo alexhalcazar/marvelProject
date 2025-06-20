@@ -1,0 +1,30 @@
+.top-bg {
+    padding-top: 80px;
+    text-align: center;
+    background-color: white;
+}
+
+.mid-bg {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-image: url('../images/backgrounds/comic-bg.avif');
+    background-size: contain;
+    background-position: center;
+    background-color: #f4a300;
+    min-height: 40vh;
+}
+
+.bottom-bg {
+    background-color: #ed1d24;
+}
+
+img {
+    height: 250px;
+    width: 250px;
+}
+
+p {
+    padding: 20px;
+    font-size: 2em;
+}
