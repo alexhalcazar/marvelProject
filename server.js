@@ -10,12 +10,18 @@ const __dirname = path.dirname(__filename);
 const app = express();
 const port = process.env.PORT || 3000;
 
-app.use(express.static(path.join(__dirname, '/frontend')));
+app.use(express.static(path.join(__dirname, '/frontend/public')));
 app.use(express.json());
 
 app.get('/', (req, res) => {
     res.sendFile(
         path.join(__dirname, 'frontend', 'src', 'views', 'index.html')
+    );
+});
+
+app.get('/characters', (req, res) => {
+    res.sendFile(
+        path.join(__dirname, 'frontend', 'src', 'views', 'characters.html')
     );
 });
 

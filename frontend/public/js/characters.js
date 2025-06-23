@@ -52,9 +52,19 @@ searchForm.addEventListener('input', (event) => {
 });
 
 const updateImage = (imgPath) => {
-    const imgElement = document.getElementById('portrait');
-    imgElement.src = imgPath;
-    imgElement.alt = 'character portrait';
+    try {
+        const container = document.getElementById('portrait');
+        // clear any previous image
+        container.innerHTML = '';
+
+        const img = document.createElement('img');
+        img.src = imgPath;
+        img.alt = 'character portrait';
+
+        container.appendChild(img);
+    } catch (error) {
+        console.log(error);
+    }
 };
 
 const updateDescription = (text) => {

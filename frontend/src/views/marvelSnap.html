@@ -3,38 +3,141 @@
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <link href="/public/css/styles.css" rel="stylesheet" />
-        <script src="/src/js/snap.js" type="module" defer></script>
+        <link rel="stylesheet" href="/css/main.css" />
+        <link rel="stylesheet" href="/css/snap.css" />
+        <script src="/js/snap.js" type="module" defer></script>
         <title>Marvel Snap</title>
     </head>
-    <body class="snap-bg">
-        <nav>
-            <ul>
-                <li>
-                    <a href="/">Search Character</a>
-                </li>
-                <li>
-                    <a href="/marvelSnap">Marvel Snap</a>
-                </li>
-            </ul>
-        </nav>
-        <div class="search-box">
-            <form id="search-data">
-                <input
-                    type="text"
-                    id="character-value"
-                    class="input-field"
-                    placeholder="Search Card"
-                    autocomplete="off"
-                />
-                <button type="submit">Search</button>
-            </form>
-            <div class="result-box">
+    <body>
+        <header>
+            <nav>
                 <ul>
-                    <!-- <li> elements will be generated 
-                        based on search results -->
+                    <li>
+                        <a href="/">Home</a>
+                    </li>
+                    <li>
+                        <a href="/characters">Characters</a>
+                    </li>
+                    <li>
+                        <a href="">Comics</a>
+                    </li>
+                    <li>
+                        <a href="">Events</a>
+                    </li>
+                    <li>
+                        <a href="/marvelSnap">Marvel Snap</a>
+                    </li>
                 </ul>
+            </nav>
+        </header>
+        <main>
+            <div class="section top-bg">
+                <h1>Search Cards from the Marvel Snap Game</h1>
+                <div class="search-box">
+                    <img
+                        src="/images/icons/magnifying-glass.png"
+                        class="magnifying-glass"
+                    />
+                    <form id="search-data">
+                        <input
+                            type="text"
+                            class="input-field"
+                            id="character-value"
+                            placeholder="Search Character"
+                            autocomplete="off"
+                        />
+                    </form>
+                    <div class="result-box">
+                        <ul>
+                            <!-- <li> elements will be generated 
+                                based on search results -->
+                        </ul>
+                    </div>
+                </div>
+                <button type="submit" class="comic-button" form="search-form">
+                    Search!
+                </button>
             </div>
+            <div class="search-options">
+                <label>Card Cost</label><br />
+                <label>
+                    <input type="checkbox" name="filter-card-cost" value="0" /> 0
+                </label>
+                <label>
+                    <input type="checkbox" name="filter-card-cost" value="1" /> 1
+                </label>
+                <label>
+                    <input type="checkbox" name="filter-card-cost" value="2" /> 2
+                </label>
+                <label>
+                    <input type="checkbox" name="filter-card-cost" value="3" /> 3
+                </label>
+                <label>
+                    <input type="checkbox" name="filter-card-cost" value="4" /> 4
+                </label>
+                <label>
+                    <input type="checkbox" name="filter-card-cost" value="5" /> 5
+                </label>
+                <label>
+                    <input type="checkbox" name="filter-card-cost" value="6" /> 6
+                </label>
+                <label>
+                    <input type="checkbox" name="filter-card-cost" value="7" /> 6+
+                </label>
+                <label for="filter-sort-cost">Sort</label>
+                    <select name="filter-sort-cost" id="sort-cost" /> 
+                        <option value="none">None</option>
+                        <option value="ascending">ASC</option>
+                        <option value="descending">DES</option>
+                    </select><br />
+                <label>Card Power</label><br />
+                <label>
+                    <input type="checkbox" name="filter-card-power" value="0" /> 0
+                </label>
+                <label>
+                    <input type="checkbox" name="filter-card-power" value="1" /> 1
+                </label>
+                <label>
+                    <input type="checkbox" name="filter-card-power" value="2" /> 2
+                </label>
+                <label>
+                    <input type="checkbox" name="filter-card-power" value="3" /> 3
+                </label>
+                <label>
+                    <input type="checkbox" name="filter-card-power" value="4" /> 4
+                </label>
+                <label>
+                    <input type="checkbox" name="filter-card-power" value="5" /> 5
+                </label>
+                <label>
+                <label>
+                    <input type="checkbox" name="filter-card-power" value="6" /> 6
+                </label>
+                <label>
+                    <input type="checkbox" name="filter-card-power" value="7" /> 6+ 
+                </label>
+                <label for="filter-sort-power">Sort</label>
+                    <select name="filter-sort-power" id="sort-power" /> 
+                        <option value="none">None</option>
+                        <option value="ascending">ASC</option>
+                        <option value="descending">DES</option>
+                    </select><br/>
+                <label for="series">Series</label><br />
+                <select name="card-series" id="series">
+                    <option value="all">All</option>
+                    <option value="starter">Starter</option>
+                    <option value="series-1">Series-1</option>
+                    <option value="series-2">Series-2</option>
+                    <option value="series-3">Series-3</option>
+                    <option value="series-4">Series-4</option>
+                    <option value="series-5">Series-5</option>
+                </select>
+                <label for="filter-sort-series">Sort</label>
+                    <select name="filter-sort-series" id="sort-series" /> 
+                        <option value="none">None</option>
+                        <option value="ascending">ASC</option>
+                        <option value="descending">DES</option>
+                    </select><br/>
         </div>
         <div class="search-options">
             <label>Card Cost</label><br />
@@ -118,5 +221,6 @@
                 </select><br/>
         </div>
         <div id="collection-list"></div>
+        </main>
     </body>
 </html>

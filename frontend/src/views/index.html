@@ -3,47 +3,73 @@
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <link href="/public/css/styles.css" rel="stylesheet" />
-        <script src="/src/js/main.js" type="module" defer></script>
-        <title>Main</title>
+        <link rel="stylesheet" href="/css/index.css" />
+        <link rel="stylesheet" href="/css/main.css" />
+        <title>Marvel Hub</title>
     </head>
-    <body class="index-bg">
-        <nav>
-            <ul>
-                <li>
-                    <a href="/">Search Character</a>
-                </li>
-                <li>
-                    <a href="/marvelSnap">Marvel Snap</a>
-                </li>
-            </ul>
-        </nav>
-        <div class="flex-container">
-            <div class="search-box">
-                <form id="search-form">
-                    <input
-                        type="text"
-                        class="input-field"
-                        id="character-value"
-                        placeholder="Search Character"
-                        autocomplete="off"
-                    />
-                    <button type="submit">Search</button>
-                </form>
-                <div class="result-box">
-                    <ul>
-                        <!-- <li> elements will be generated 
-                                based on search results -->
-                    </ul>
+    <body>
+        <header>
+            <nav>
+                <ul>
+                    <li>
+                        <a href="/">Home</a>
+                    </li>
+                    <li>
+                        <a href="/characters">Characters</a>
+                    </li>
+                    <li>
+                        <a href="">Comics</a>
+                    </li>
+                    <li>
+                        <a href="">Events</a>
+                    </li>
+                    <li>
+                        <a href="/marvelSnap">Marvel Snap</a>
+                    </li>
+                </ul>
+            </nav>
+        </header>
+        <main>
+            <div class="section top-bg">
+                <h1>Welcome to the Marvel Project!</h1>
+                <p>
+                    Explore the Marvel Universe - One Character, Comic, and Card
+                    at a Time!
+                </p>
+                <div class="row">
+                    <div class="column">
+                        <img
+                            src="/images/characters/captain-america.jpeg"
+                            alt="Captain-America"
+                        />
+                    </div>
+                    <div class="column">
+                        <img
+                            src="/images/characters/spider-man.jpeg"
+                            alt="Spider-Man"
+                        />
+                    </div>
+                    <div class="column">
+                        <img
+                            src="/images/characters/iron-man.jpeg"
+                            alt="Iron-Man"
+                        />
+                    </div>
+                    <div class="column">
+                        <img
+                            src="/images/characters/wolverine.jpeg"
+                            alt="Wolverine"
+                        />
+                    </div>
                 </div>
+                <form action="">
+                    <button class="comic-button">
+                        Explore More Characters!
+                    </button>
+                </form>
             </div>
-            <p id="description"></p>
-            <img
-                class="character-display"
-                src="/public/images/iconMarvel.jpg"
-                alt="marvelIcon"
-                id="portrait"
-            />
-        </div>
+            <div class="section mid-bg"></div>
+            <div class="section bottom-bg"></div>
+        </main>
     </body>
 </html>
