@@ -25,8 +25,23 @@ export const updateRecommendations = (list) => {
     });
 };
 
-export const clearResults = () => {
+export const clearRecommendations = () => {
     const divElement = document.querySelector('.result-box');
     const ulElement = divElement.querySelector('ul');
     ulElement.innerHTML = '';
+};
+
+export const invalidSearch = (query) => {
+    clearRecommendations();
+    const divElement = document.querySelector('.result-box');
+    const ulElement = divElement.querySelector('ul');
+    const message = `No matching search for '${query}'`;
+    const listElement = document.createElement('li');
+    listElement.textContent = message;
+    ulElement.appendChild(listElement);
+};
+
+export const clearCards = () => {
+    const div = document.getElementById('collection-list');
+    div.innerHTML = '';
 };
