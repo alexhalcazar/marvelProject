@@ -21,7 +21,12 @@ export const getCharacter = async (character) => {
 
         return response.data.data.results;
     } catch (error) {
-        console.log(error);
+        console.log('Failed to connect to Marvel API:', error.message);
+        if (error.response) {
+            console.error('Response data:', error.response.data);
+            console.error('Response status:', error.response.status);
+        }
+        throw new Error('Failed to fetch data from Marvel API');
     }
 };
 
@@ -40,6 +45,11 @@ export const getRecommendatons = async (string) => {
 
         return recommendations;
     } catch (error) {
-        console.log(error);
+        console.log('Failed to connect to Marvel API:', error.message);
+        if (error.response) {
+            console.error('Response data:', error.response.data);
+            console.error('Response status:', error.response.status);
+        }
+        throw new Error('Failed to fetch data from Marvel API');
     }
 };
