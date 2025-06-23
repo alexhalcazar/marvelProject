@@ -1,6 +1,8 @@
 import express from 'express';
-import { searchCharacter } from '../controllers/characterController.js';
-import { searchRecommendation } from '../controllers/characterController.js';
+import {
+    searchCharacter,
+    searchRecommendation
+} from '../controllers/characterController.js';
 
 const router = express.Router();
 
