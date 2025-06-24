@@ -5,6 +5,7 @@ import {
     updateRecommendations
 } from './shared.js';
 
+import { getApiUrl } from '@utils/getAPIUrl.js';
 const searchForm = document.getElementById('search-form');
 
 searchForm.addEventListener('submit', async (event) => {
@@ -16,7 +17,7 @@ searchForm.addEventListener('submit', async (event) => {
     }
     try {
         const response = await fetch(
-            `/api/characters/search?name=${character}`
+            getApiUrl(`/api/characters/search?name=${character}`)
         );
         if (!response.ok) {
             throw new Error(`HTTP error! status: ${response.status}`);
@@ -75,7 +76,7 @@ const updateDescription = (text) => {
 const debounceSearch = debounce(async (input) => {
     try {
         const response = await fetch(
-            `api/characters/startsWith?string=${input}`
+            getApiUrl(`/api/characters/startsWith?string=${input}`)
         );
         if (!response) {
             throw new Error(`Http error! status: ${response.status}`);

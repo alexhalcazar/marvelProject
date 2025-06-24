@@ -6,7 +6,8 @@ import {
     clearCards
 } from './shared.js';
 
-import { createFilterObject } from '/utils/queryUtil.js';
+import { createFilterObject } from '@utils/queryUtil.js';
+import { getApiUrl } from '@utils/getAPIUrl.js';
 
 const searchForm = document.getElementById('search-data');
 const allFilters = document.querySelectorAll('[name^="filter"]');
@@ -16,7 +17,7 @@ searchForm.addEventListener('submit', async (event) => {
     const card = document.getElementById('character-value').value;
     clearCards();
     try {
-        const response = await fetch(`/database/find?card=${card}`);
+        const response = await fetch(getApiUrl(`/database/find?card=${card}`));
         if (!response.ok) {
             throw new Error(`HTTP error! status: ${response.status}`);
         }
@@ -70,7 +71,7 @@ const displayImage = (cardData) => {
 
 const debounceSearch = debounce(async (input) => {
     try {
-        const response = await fetch(`/database/find?card=${input}`);
+        const response = await fetch(getApiUrl(`/database/find?card=${input}`));
 
         if (!response) {
             throw new Error(`Http error! status: ${response.status}`);
@@ -156,7 +157,7 @@ const getAllFilters = () => {
 const getCards = async () => {
     const query = getAllFilters();
     try {
-        const response = await fetch(`/database/find`, {
+        const response = await fetch(getApiUrl(`/database/find`), {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -174,7 +175,7 @@ const getCards = async () => {
 
 window.onload = async () => {
     try {
-        const response = await fetch(`/database/find?card=`);
+        const response = await fetch(getApiUrl(`/database/find?card=`));
         if (!response.ok) {
             throw new Error(`HTTP error! status: ${response.status}`);
         }
