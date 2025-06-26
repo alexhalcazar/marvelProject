@@ -1,5 +1,4 @@
 import { defineConfig } from 'vite';
-import path from 'path';
 
 export default defineConfig({
     root: 'frontend/src/views',
@@ -12,12 +11,6 @@ export default defineConfig({
                 characters: 'frontend/src/views/characters.html',
                 marvelSnap: 'frontend/src/views/marvelSnap.html'
             }
-        }
-    },
-    resolve: {
-        alias: {
-            '@js': path.resolve(__dirname, 'frontend/src/js'),
-            '@utils': path.resolve(__dirname, 'frontend/src/utils')
         }
     },
     publicDir: '../../../frontend/public',

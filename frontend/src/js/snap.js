@@ -6,8 +6,8 @@ import {
     clearCards
 } from './shared.js';
 
-import { createFilterObject } from '@utils/queryUtil.js';
-import { getApiUrl } from '@utils/getAPIUrl.js';
+import { createFilterObject } from '../utils/queryUtil.js';
+import { getApiUrl } from '../utils/getAPIUrl.js';
 
 const searchForm = document.getElementById('search-data');
 const allFilters = document.querySelectorAll('[name^="filter"]');
