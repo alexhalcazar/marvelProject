@@ -11,7 +11,7 @@ const app = express();
 const port = process.env.PORT || 3000;
 
 app.use(express.json());
-app.use(express.static(path.join(__dirname, '/frontend/public')));
+app.use(express.static(path.join(__dirname, '/frontend/dist')));
 
 app.use('/api/characters', characterRouter);
 app.use('/database', snapRouter);

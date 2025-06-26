@@ -5,7 +5,7 @@ import {
     updateRecommendations
 } from './shared.js';
 
-import { getApiUrl } from '@utils/getAPIUrl.js';
+import { getApiUrl } from '../utils/getAPIUrl.js';
 const searchForm = document.getElementById('search-form');
 
 searchForm.addEventListener('submit', async (event) => {
