@@ -17,7 +17,8 @@ searchForm.addEventListener('submit', async (event) => {
     const card = document.getElementById('character-value').value;
     clearCards();
     try {
-        const response = await fetch(getApiUrl(`/database/find?card=${card}`));
+        const url = await getApiUrl(`/database/find?card=${card}`);
+        const response = await fetch(url);
         if (!response.ok) {
             throw new Error(`HTTP error! status: ${response.status}`);
         }
@@ -71,7 +72,8 @@ const displayImage = (cardData) => {
 
 const debounceSearch = debounce(async (input) => {
     try {
-        const response = await fetch(getApiUrl(`/database/find?card=${input}`));
+        const url = await getApiUrl(`/database/find?card=${input}`);
+        const response = await fetch(url);
 
         if (!response) {
             throw new Error(`Http error! status: ${response.status}`);
@@ -157,7 +159,8 @@ const getAllFilters = () => {
 const getCards = async () => {
     const query = getAllFilters();
     try {
-        const response = await fetch(getApiUrl(`/database/find`), {
+        const url = await getApiUrl(`/database/find`);
+        const response = await fetch(url, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -175,7 +178,8 @@ const getCards = async () => {
 
 window.onload = async () => {
     try {
-        const response = await fetch(getApiUrl(`/database/find?card=`));
+        const url = await getApiUrl(`/database/find?card=`);
+        const response = await fetch(url);
         if (!response.ok) {
             throw new Error(`HTTP error! status: ${response.status}`);
         }
