@@ -16,9 +16,8 @@ searchForm.addEventListener('submit', async (event) => {
         return;
     }
     try {
-        const response = await fetch(
-            getApiUrl(`/api/characters/search?name=${character}`)
-        );
+        const url = await getApiUrl(`/api/characters/search?name=${character}`);
+        const response = await fetch(url);
         if (!response.ok) {
             throw new Error(`HTTP error! status: ${response.status}`);
         }
@@ -75,9 +74,10 @@ const updateDescription = (text) => {
 
 const debounceSearch = debounce(async (input) => {
     try {
-        const response = await fetch(
-            getApiUrl(`/api/characters/startsWith?string=${input}`)
+        const url = await getApiUrl(
+            `/api/characters/startsWith?string=${input}`
         );
+        const response = await fetch(url);
         if (!response) {
             throw new Error(`Http error! status: ${response.status}`);
         } else {
