@@ -8,7 +8,7 @@ export const getApiUrl = async (path) => {
     try {
         const res = await fetch('/config');
         const config = await res.json();
-        baseUrl = config.apiUrl;
+        apiUrl = config.apiUrl;
         return `${apiUrl}${path}`;
     } catch (error) {
         console.error(error);
