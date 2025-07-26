@@ -1,8 +1,8 @@
 {
-    "name": "apicall",
+    "name": "marvel-project",
     "version": "1.0.0",
-    "description": "Testing API calls",
-    "main": "apiCall.js",
+    "description": "A web app that interactig with the official Marvel API and MongoDB",
+    "main": "server.js",
     "scripts": {
         "dev": "concurrently \"vite\" \"nodemon server.js\"",
         "frontend": "vite",
