@@ -1,8 +1,16 @@
-export const getApiUrl = (path) => {
-    const base =
-        import.meta.env.MODE === 'development'
-            ? ''
-            : 'https://phfeaa7t58.execute-api.us-west-1.amazonaws.com';
+let apiUrl = '';
 
-    return `${base}${path}`;
+export const getApiUrl = async (path) => {
+    const isDev = window.location.port === '5173';
+    if (isDev) {
+        return path;
+    }
+    try {
+        const res = await fetch('/config');
+        const config = await res.json();
+        baseUrl = config.apiUrl;
+        return `${apiUrl}${path}`;
+    } catch (error) {
+        console.error(error);
+    }
 };
