@@ -1,7 +1,7 @@
 {
     "name": "marvel-project",
     "version": "1.0.0",
-    "description": "A web app that interactig with the official Marvel API and MongoDB",
+    "description": "A web app that interacts with the official Marvel API and MongoDB",
     "main": "server.js",
     "scripts": {
         "dev": "concurrently \"vite\" \"nodemon server.js\"",
