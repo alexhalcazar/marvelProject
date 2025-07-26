@@ -68,7 +68,7 @@ API_BASE_URL=your_api_endpoint_here
 
 ## Access the Marvel Project server
 
-Open your web browser and navigate to [local host](http://localhost:3000). <br>
+Open your web browser and navigate to [local host](http://localhost:3000/views/index.html). <br>
 You can use this server to explore and interact with the website.
 
 ## Deployment
