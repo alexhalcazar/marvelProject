@@ -1,0 +1,17 @@
+.result-box {
+    width: 54vw;
+    background-color: white;
+    border: 1px solid black;
+    border-radius: 1em;
+}
+
+.result-box ul {
+    cursor: pointer;
+}
+
+.result-box li {
+    list-style-type: none;
+}
+.result-box li:hover {
+    background-color: #ed1d24;
+}

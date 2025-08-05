@@ -1,0 +1,45 @@
+h1,
+p {
+    font-family: 'Bangers', Impact, sans-serif;
+}
+
+p {
+    font-size: 2em;
+    color: red;
+}
+
+.section {
+    padding-top: 80px;
+    text-align: center;
+    background-color: white;
+}
+
+img {
+    width: 200px;
+    height: auto;
+    cursor: pointer;
+}
+
+.column {
+    flex: 1 1 20%;
+}
+
+.row {
+    display: flex;
+}
+
+h1 {
+    font-size: 3em;
+}
+
+@media screen and (max-width: 493px) {
+    h1 {
+        font-size: 2em;
+    }
+}
+
+@media screen and (max-width: 807px) {
+    img {
+        width: 100px;
+    }
+}
