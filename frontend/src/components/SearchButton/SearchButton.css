@@ -1,0 +1,15 @@
+.comic-button {
+    height: 200px;
+    width: 200px;
+    padding-bottom: 30px;
+    font-family: 'Bangers', Impact, sans-serif;
+    font-size: 1.5em;
+    text-align: center;
+    background-color: transparent;
+    background-image: url('../../assets/images/icons/comic-button.png');
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center;
+    border: none;
+    cursor: pointer;
+}
