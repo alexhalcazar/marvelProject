@@ -1,0 +1,30 @@
+.character-portrait {
+    display: flex;
+    position: relative;
+    justify-content: center;
+    background-color: #f4a300;
+    width: 100vw;
+    min-height: 40vh;
+}
+
+.character-border {
+    min-width: 80vw;
+}
+
+.portrait {
+    position: absolute;
+    top: 5%;
+    width: 60%;
+    height: 90%;
+}
+
+.description {
+    justify-content: center;
+    background-color: #ed1d24;
+    width: 100vw;
+    min-height: 30vh;
+}
+
+p {
+    color: black;
+}

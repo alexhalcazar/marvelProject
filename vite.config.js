@@ -1,29 +1,14 @@
 import { defineConfig } from 'vite';
-import { dirname, resolve } from 'path';
-import { fileURLToPath } from 'url';
-
-const __dirname = dirname(fileURLToPath(import.meta.url));
+import react from '@vitejs/plugin-react';
 
 export default defineConfig({
-    root: 'frontend/src',
+    plugins: [react()],
+    root: 'frontend',
     build: {
-        outDir: '../dist',
-        emptyOutDir: true,
-        rollupOptions: {
-            input: {
-                main: resolve(__dirname, 'frontend/src/views/index.html'),
-                characters: resolve(
-                    __dirname,
-                    'frontend/src/views/characters.html'
-                ),
-                marvelSnap: resolve(
-                    __dirname,
-                    'frontend/src/views/marvelSnap.html'
-                )
-            }
-        }
+        outDir: 'dist',
+        emptyOutDir: true
     },
-    publicDir: '../public',
+    publicDir: 'public',
     server: {
         proxy: {
             '/database': 'http://localhost:3000',
