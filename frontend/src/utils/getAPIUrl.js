@@ -6,6 +6,7 @@ export const getApiUrl = async (path) => {
         return path;
     }
     try {
+        //used a config.json to deploy to AWS S3
         const res = await fetch('/config');
         const config = await res.json();
         apiUrl = config.apiUrl;
