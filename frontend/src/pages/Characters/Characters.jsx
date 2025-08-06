@@ -11,8 +11,8 @@ const Characters = () => {
     const [portrait, setPortrait] = useState('');
     const [loading, setLoading] = useState(false);
     const [description, setDescription] = useState('');
-    const apiRecommendationUrl = '/api/characters/startsWith?string';
-    const apiSearchUrl = '/api/characters/search?name';
+    const apiRecommendationUrl = '/api/characters/startsWith';
+    const apiSearchUrl = '/api/characters/search';
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -28,7 +28,9 @@ const Characters = () => {
     const fetchCharacter = async (character) => {
         try {
             setLoading(true);
-            const url = await getApiUrl(`${apiSearchUrl}=${character}`);
+            const url = await getApiUrl(
+                `${apiSearchUrl}?name=${encodeURIComponent(character)}`
+            );
             const response = await fetch(url);
             if (!response.ok) {
                 setLoading(false);
@@ -57,14 +59,15 @@ const Characters = () => {
     const fetchSuggestions = async (input) => {
         try {
             setLoading(true);
-            const url = await getApiUrl(`${apiRecommendationUrl}=${input}`);
+            const url = await getApiUrl(
+                `${apiRecommendationUrl}?string=${encodeURIComponent(input)}`
+            );
             const response = await fetch(url);
             if (!response.ok) {
                 setSearchSuggestions([]);
                 throw new Error(`Http error! status: ${response.status}`);
             } else {
                 const data = await response.json();
-                console.log(`Our search suggestions ${data}`);
                 setSearchSuggestions(data);
             }
         } catch (error) {
