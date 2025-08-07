@@ -12,4 +12,14 @@
     background-position: center;
     border: none;
     cursor: pointer;
+    color: red;
+}
+
+@media screen and (max-width: 493px) {
+    .comic-button {
+        height: 135px;
+        width: 135px;
+        font-family: 'Bangers', Impact, sans-serif;
+        font-size: 0.9em;
+    }
 }
