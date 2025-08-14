@@ -13,24 +13,23 @@
     margin-top: 10px;
 }
 
+.search-input {
+    position: relative;
+}
+
 .input-field {
     height: 2.5em;
     width: 50vw;
     border-radius: 1em;
-    padding-left: 40px;
+    padding-left: 3em;
 }
 
 .magnifying-glass {
     position: absolute;
     height: auto;
-    width: 25px;
-    top: 5px;
-    left: 24.2%;
+    width: 1.5em;
+    top: 50%;
+    left: 0.6em;
+    transform: translateY(-50%);
     cursor: default;
-}
-
-@media screen and (max-width: 807px) {
-    .magnifying-glass {
-        left: 22%;
-    }
 }

@@ -18,16 +18,18 @@ const SearchBox = ({
             <div className="section">
                 <h1>{header}</h1>
                 <div className="search-bar">
-                    <img
-                        src={magnifyingGlass}
-                        alt="magnifying-glass"
-                        className="magnifying-glass"
-                    />
-                    <Form
-                        character={character}
-                        setCharacter={setCharacter}
-                        handleSubmit={handleSubmit}
-                    />
+                    <div className="search-input">
+                        <img
+                            src={magnifyingGlass}
+                            alt="magnifying-glass"
+                            className="magnifying-glass"
+                        />
+                        <Form
+                            character={character}
+                            setCharacter={setCharacter}
+                            handleSubmit={handleSubmit}
+                        />
+                    </div>
                     {character.length > 2 && (
                         <ResultBox
                             searchSuggestions={searchSuggestions}
