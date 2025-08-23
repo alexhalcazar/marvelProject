@@ -18,7 +18,7 @@ export const getCharacter = async (character) => {
         const hash = generateHash(ts, privateKey, publicKey);
         const url = `https://gateway.marvel.com/v1/public/characters?ts=${ts}&apikey=${publicKey}&hash=${hash}&name=${character}`;
         const response = await axios.get(url, { timeout: 10000 });
-
+        //axios returns the response data wrapped in a data property
         return response.data.data.results;
     } catch (error) {
         console.log('Failed to connect to Marvel API:', error.message);
@@ -50,6 +50,20 @@ export const getRecommendatons = async (string) => {
             console.error('Response data:', error.response.data);
             console.error('Response status:', error.response.status);
         }
+        throw new Error('Failed to fetch data from Marvel API');
+    }
+};
+
+export const getComics = async () => {
+    try {
+        const ts = Date.now().toString();
+        const hash = generateHash(ts, privateKey, publicKey);
+        const url = `https://gateway.marvel.com/v1/public/comics?ts=${ts}&apikey=${publicKey}&hash=${hash}&dateDescriptor=thisWeek`;
+        const response = await axios.get(url, { timeout: 10000 });
+        const results = response.data.data.results;
+        return results;
+    } catch (error) {
+        console.log(error);
         throw new Error('Failed to fetch data from Marvel API');
     }
 };
