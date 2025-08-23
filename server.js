@@ -1,7 +1,7 @@
 import express from 'express';
 import path from 'path';
 import { fileURLToPath } from 'url';
-import characterRouter from './backend/routes/characterRoutes.js';
+import marvelRouter from './backend/routes/marvelRoutes.js';
 import snapRouter from './backend/routes/snapRoutes.js';
 import 'dotenv/config';
 
@@ -17,7 +17,7 @@ app.use(express.static(path.join(__dirname, '/frontend/dist')));
 app.get('/config', (req, res) => {
     res.json({ apiUrl: process.env.API_URL });
 });
-app.use('/api/characters', characterRouter);
+app.use('/api/marvel', marvelRouter);
 app.use('/database', snapRouter);
 
 app.listen(port, '0.0.0.0', async () => {

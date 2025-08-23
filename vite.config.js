@@ -12,7 +12,7 @@ export default defineConfig({
     server: {
         proxy: {
             '/database': 'http://localhost:3000',
-            '/api/characters': 'http://localhost:3000'
+            '/api/marvel': 'http://localhost:3000'
         }
     }
 });
