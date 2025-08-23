@@ -1,19 +1,29 @@
 import './FeatureSelection.css';
 import '../../styles/fonts.css';
+import { Link } from 'react-router';
 
-const FeatureSelection = ({ header, paragraph, items, children }) => {
+const FeatureSelection = ({
+    header,
+    paragraph,
+    page,
+    items,
+    myClass,
+    children
+}) => {
     return (
         <>
-            <div className="section">
+            <div className={`section ${myClass}`}>
                 <h1>{header}</h1>
                 <p>{paragraph}</p>
                 <div className="row">
                     {items.map((item, index) => {
                         return (
                             <div className="column" key={index}>
-                                {item.image && (
-                                    <img src={item.image} alt={item.alt} />
-                                )}
+                                <Link to={`${page}?name=${item.query}`}>
+                                    {item.image && (
+                                        <img src={item.image} alt={item.alt} />
+                                    )}
+                                </Link>
                             </div>
                         );
                     })}
