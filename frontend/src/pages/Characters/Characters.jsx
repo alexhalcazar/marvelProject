@@ -89,7 +89,7 @@ const Characters = () => {
         }
     }, [character]);
 
-    //default search if coming from Home page
+    //default search if coming from a character link from the Home page
     useEffect(() => {
         if (searchParams.get('name')) {
             fetchCharacter(searchParams.get('name'));
