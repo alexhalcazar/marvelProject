@@ -72,7 +72,6 @@ const Home = () => {
                     at a Time!"
                 items={items}
                 page="/characters"
-                myClass="characters"
             >
                 <Link to="/characters">
                     <SearchButton text="Explore More Characters!" />
@@ -83,6 +82,7 @@ const Home = () => {
                     header="Check out the latest Comics!"
                     items={comics}
                     page="/comics"
+                    myClass="comics"
                 >
                     <Link to="/comics">
                         <SearchButton text="More Comics!" myClass="comics" />

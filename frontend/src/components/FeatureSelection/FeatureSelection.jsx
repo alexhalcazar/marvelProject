@@ -15,7 +15,7 @@ const FeatureSelection = ({
             <div className={`section ${myClass}`}>
                 <h1>{header}</h1>
                 <p>{paragraph}</p>
-                <div className="row">
+                <div className={`row ${myClass}`}>
                     {items.map((item, index) => {
                         return (
                             <div className="column" key={index}>
