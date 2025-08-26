@@ -1,8 +1,12 @@
 import './SearchButton.css';
 
-const SearchButton = ({ text, formId }) => {
+const SearchButton = ({ text, formId, myClass }) => {
     return (
-        <button type="submit" className="comic-button" form={formId}>
+        <button
+            type="submit"
+            className={`comic-button ${myClass}`}
+            form={formId}
+        >
             {text}
         </button>
     );

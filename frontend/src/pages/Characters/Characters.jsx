@@ -1,6 +1,7 @@
 import SearchBox from '../../components/SearchBox/SearchBox.jsx';
 import debounce from '../../utils/debounce.js';
 import { useState, useEffect, useMemo } from 'react';
+import { useSearchParams } from 'react-router-dom';
 import { getApiUrl } from '../../utils/getAPIUrl.js';
 import comicBg from '../../assets/images/backgrounds/comic-bg.avif';
 import './Characters.css';
@@ -11,8 +12,9 @@ const Characters = () => {
     const [portrait, setPortrait] = useState('');
     const [loading, setLoading] = useState(false);
     const [description, setDescription] = useState('');
-    const apiRecommendationUrl = '/api/characters/startsWith';
-    const apiSearchUrl = '/api/characters/search';
+    const [searchParams] = useSearchParams();
+    const apiRecommendationUrl = '/api/marvel/character/nameStartsWith';
+    const apiSearchUrl = '/api/marvel/character';
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -86,6 +88,13 @@ const Characters = () => {
             debounceSearch(character);
         }
     }, [character]);
+
+    //default search if coming from a character link from the Home page
+    useEffect(() => {
+        if (searchParams.get('name')) {
+            fetchCharacter(searchParams.get('name'));
+        }
+    }, []);
 
     return (
         <>
