@@ -71,7 +71,7 @@ const Home = () => {
                 paragraph="Explore the Marvel Universe - One Character, Comic, and Card
                     at a Time!"
                 items={items}
-                page="/charcters"
+                page="/characters"
                 myClass="characters"
             >
                 <Link to="/characters">
