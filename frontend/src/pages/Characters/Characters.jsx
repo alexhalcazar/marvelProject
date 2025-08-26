@@ -13,8 +13,8 @@ const Characters = () => {
     const [loading, setLoading] = useState(false);
     const [description, setDescription] = useState('');
     const [searchParams] = useSearchParams();
-    const apiRecommendationUrl = '/api/characters/startsWith';
-    const apiSearchUrl = '/api/characters/search';
+    const apiRecommendationUrl = '/api/marvel/character/nameStartsWith';
+    const apiSearchUrl = '/api/marvel/character';
 
     const handleSubmit = async (e) => {
         e.preventDefault();

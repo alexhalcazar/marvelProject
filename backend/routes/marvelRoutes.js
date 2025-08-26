@@ -7,8 +7,8 @@ import {
 
 const router = express.Router();
 
-router.get('/search', searchCharacter);
+router.get('/character', searchCharacter);
 router.get('/comics', searchLatestComics);
-router.get('/startsWith', searchRecommendation);
+router.get('/character/nameStartsWith', searchRecommendation);
 
 export default router;
