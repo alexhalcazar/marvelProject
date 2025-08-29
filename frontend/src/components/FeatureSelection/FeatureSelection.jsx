@@ -20,8 +20,11 @@ const FeatureSelection = ({
                         return (
                             <div className="column" key={index}>
                                 <Link to={`${page}?name=${item.query}`}>
-                                    {item.image && (
-                                        <img src={item.image} alt={item.alt} />
+                                    {item.imgPath && (
+                                        <img
+                                            src={item.imgPath}
+                                            alt={item.alt}
+                                        />
                                     )}
                                 </Link>
                             </div>
