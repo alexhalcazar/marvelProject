@@ -21,3 +21,16 @@ export const searchCard = async (req, res) => {
         await db.close();
     }
 };
+
+export const getRandomCards = async (req, res) => {
+    const db = mongo();
+    try {
+        await db.connect();
+        const response = await db.findRandom();
+        const documents = await response.toArray();
+        res.json(documents);
+    } catch (error) {
+        console.error('Network', error);
+        res.status(500).json({ error: 'Network Error' });
+    }
+};

@@ -40,6 +40,17 @@ const mongo = () => {
         }
     };
 
+    const findRandom = async () => {
+        try {
+            return await db
+                .collection('marvelCards')
+                .aggregate([{ $sample: { size: 4 } }]);
+        } catch (error) {
+            console.error('Failed to query database:', error.message);
+            throw new Error('Database query failed');
+        }
+    };
+
     const close = async () => {
         try {
             if (client) {
@@ -59,6 +70,7 @@ const mongo = () => {
     return {
         connect,
         find,
+        findRandom,
         close
     };
 };
