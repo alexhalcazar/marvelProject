@@ -67,3 +67,17 @@ export const getComics = async () => {
         throw new Error('Failed to fetch data from Marvel API');
     }
 };
+
+export const getEvent = async (id) => {
+    try {
+        const ts = Date.now().toString();
+        const hash = generateHash(ts, privateKey, publicKey);
+        const url = `https://gateway.marvel.com/v1/public/events?ts=${ts}&apikey=${publicKey}&hash=${hash}&characters=${id}`;
+        const response = await axios.get(url, { timeout: 10000 });
+        const results = response.data.data.results;
+        return results;
+    } catch (error) {
+        console.error(error);
+        throw new Error('Failed to fetch data from Marvel API');
+    }
+};
