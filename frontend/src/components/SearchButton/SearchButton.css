@@ -15,7 +15,8 @@
     color: red;
 }
 
-.comic-button.comics {
+.comic-button.comics,
+.comic-button.snap {
     color: black;
 }
 
