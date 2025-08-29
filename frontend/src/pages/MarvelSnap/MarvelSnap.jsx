@@ -15,6 +15,8 @@ const MarvelSnap = () => {
     const [asc, setAsc] = useState(true);
     const [flipped, setFlipped] = useState(false);
 
+    const snapCardsUrl = '/database/cards';
+
     const handleClick = async () => {
         const newAsc = !asc;
         setAsc(newAsc);
@@ -51,7 +53,7 @@ const MarvelSnap = () => {
     const fetchCard = async (character) => {
         try {
             setLoading(true);
-            const url = await getApiUrl(`/database/find?card=${character}`);
+            const url = await getApiUrl(`${snapCardsUrl}?card=${character}`);
             const response = await fetch(url);
             if (!response.ok) {
                 setSearchSuggestions([]);
@@ -71,7 +73,7 @@ const MarvelSnap = () => {
 
     const fetchAllCards = async (sortObject) => {
         try {
-            const url = await getApiUrl(`/database/find?card=`);
+            const url = await getApiUrl(`${snapCardsUrl}?card=`);
             const response = await fetch(url, {
                 method: 'POST',
                 headers: {

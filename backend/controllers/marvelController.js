@@ -1,7 +1,8 @@
 import {
     getRecommendatons,
     getCharacter,
-    getComics
+    getComics,
+    getEvent
 } from '../services/marvelAPIService.js';
 
 export const searchCharacter = async (req, res) => {
@@ -33,6 +34,19 @@ export const searchLatestComics = async (req, res) => {
         const data = await getComics();
         return res.json(data);
     } catch (error) {
+        res.status(500).json({ error: 'API Error' });
+    }
+};
+
+export const searchEvent = async (req, res) => {
+    try {
+        const character = req.query.id;
+        if (character) {
+            const data = await getEvent(character);
+            return res.json(data);
+        }
+    } catch (error) {
+        console.log('API', error);
         res.status(500).json({ error: 'API Error' });
     }
 };

@@ -1,7 +1,7 @@
 import express from 'express';
-import { searchCard } from '../controllers/snapController.js';
+import { searchCard, getRandomCards } from '../controllers/snapController.js';
 
 const router = express.Router();
-router.route('/find').get(searchCard).post(searchCard);
-
+router.route('/cards').get(searchCard).post(searchCard);
+router.get('/cards/random', getRandomCards);
 export default router;

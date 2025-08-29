@@ -11,36 +11,44 @@ import { getApiUrl } from '../../utils/getAPIUrl';
 
 const Home = () => {
     const [comics, setComics] = useState([]);
+    const [events, setEvents] = useState([]);
+    const [cards, setCards] = useState([]);
 
-    const apiSearchUrl = '/api/marvel/comics';
+    const apiComicsUrl = '/api/marvel/comics';
+    const apiEventsUrl = '/api/marvel/events';
+    const randSnapCardsUrl = '/database/cards/random';
 
     const items = [
         {
-            image: captainAmerica,
+            imgPath: captainAmerica,
             alt: 'Captain-America',
-            query: 'Captain America'
+            query: 'Captain America',
+            id: 1009220
         },
         {
-            image: spiderMan,
+            imgPath: spiderMan,
             alt: 'Spider-Man',
-            query: 'Spider-Man (Peter Parker)'
+            query: 'Spider-Man (Peter Parker)',
+            id: 1009610
         },
         {
-            image: ironMan,
+            imgPath: ironMan,
             alt: 'Iron-Man',
-            query: 'Iron Man'
+            query: 'Iron Man',
+            id: 1009368
         },
         {
-            image: wolverine,
+            imgPath: wolverine,
             alt: 'Wolverine',
-            query: 'Wolverine'
+            query: 'Wolverine',
+            id: 1009718
         }
     ];
 
     const getLatestComics = async () => {
         const latestComics = [];
         try {
-            const url = await getApiUrl(`${apiSearchUrl}`);
+            const url = await getApiUrl(`${apiComicsUrl}`);
             const response = await fetch(url);
             if (!response.ok) {
                 console.log(`HTTP error! status: ${response.status}`);
@@ -49,8 +57,8 @@ const Home = () => {
             data.forEach((item) => {
                 const comic = {};
                 const { path, extension } = item.thumbnail;
-                const image = path + '.' + extension;
-                comic['image'] = image;
+                const imgPath = path + '.' + extension;
+                comic['imgPath'] = imgPath;
                 comic['alt'] = item.digitalId;
                 latestComics.push(comic);
             });
@@ -60,8 +68,54 @@ const Home = () => {
         }
     };
 
+    const getHomeEvents = async (items) => {
+        const events = [];
+        //variable to prevent example comics being duplicated
+        let comicNumber = 0;
+        for (const item of items) {
+            try {
+                const url = await getApiUrl(
+                    `${apiEventsUrl}?id=${encodeURIComponent(item.id)}`
+                );
+                const response = await fetch(url);
+                if (!response.ok) {
+                    console.log(`HTTP error! status: ${response.status}`);
+                }
+                const data = await response.json();
+                const firstComic = data[comicNumber];
+                const event = {};
+                const { path, extension } = firstComic.thumbnail;
+                const imgPath = path + '.' + extension;
+                event['imgPath'] = imgPath;
+                event['alt'] = item.alt;
+                events.push(event);
+                comicNumber++;
+            } catch (error) {
+                console.error('error fetching data', error);
+            }
+        }
+        setEvents(events);
+    };
+
+    const getFeaturedCard = async () => {
+        const snapCards = [];
+        try {
+            const url = await getApiUrl(randSnapCardsUrl);
+            const response = await fetch(url);
+            if (!response.ok) {
+                console.log(`HTTP error! status: ${response.status}`);
+            }
+            const data = await response.json();
+            setCards(data);
+        } catch (error) {
+            console.error('error fetching data', error);
+        }
+    };
+
     useEffect(() => {
         getLatestComics();
+        getHomeEvents(items);
+        getFeaturedCard();
     }, []);
 
     return (
@@ -86,6 +140,30 @@ const Home = () => {
                 >
                     <Link to="/comics">
                         <SearchButton text="More Comics!" myClass="comics" />
+                    </Link>
+                </FeatureSelection>
+            </div>
+            <div className="event-section">
+                <FeatureSelection
+                    header="Discover Marvel Events!"
+                    items={events}
+                    page="/events"
+                    myClass="events"
+                >
+                    <Link to="events">
+                        <SearchButton text="Other Events" myClass="events" />
+                    </Link>
+                </FeatureSelection>
+            </div>
+            <div className="snap-section">
+                <FeatureSelection
+                    header="Explore Marvel Snap Cards!"
+                    items={cards}
+                    page="/marvelSnap"
+                    myClass="snap"
+                >
+                    <Link to="/marvelSnap">
+                        <SearchButton text="More Cards!" myClass="snap" />
                     </Link>
                 </FeatureSelection>
             </div>
