@@ -23,25 +23,29 @@ const Home = () => {
             imgPath: captainAmerica,
             alt: 'Captain-America',
             query: 'Captain America',
-            id: 1009220
+            id: 1009220,
+            event: 1
         },
         {
             imgPath: spiderMan,
             alt: 'Spider-Man',
             query: 'Spider-Man (Peter Parker)',
-            id: 1009610
+            id: 1009610,
+            event: 0
         },
         {
             imgPath: ironMan,
             alt: 'Iron-Man',
             query: 'Iron Man',
-            id: 1009368
+            id: 1009368,
+            event: 2
         },
         {
             imgPath: wolverine,
             alt: 'Wolverine',
             query: 'Wolverine',
-            id: 1009718
+            id: 1009709,
+            event: 0
         }
     ];
 
@@ -71,7 +75,6 @@ const Home = () => {
     const getHomeEvents = async (items) => {
         const events = [];
         //variable to prevent example comics being duplicated
-        let comicNumber = 0;
         for (const item of items) {
             try {
                 const url = await getApiUrl(
@@ -82,14 +85,13 @@ const Home = () => {
                     console.log(`HTTP error! status: ${response.status}`);
                 }
                 const data = await response.json();
-                const firstComic = data[comicNumber];
-                const event = {};
-                const { path, extension } = firstComic.thumbnail;
+                const event = data[item.event];
+                const eventObj = {};
+                const { path, extension } = event.thumbnail;
                 const imgPath = path + '.' + extension;
-                event['imgPath'] = imgPath;
-                event['alt'] = item.alt;
-                events.push(event);
-                comicNumber++;
+                eventObj['imgPath'] = imgPath;
+                eventObj['alt'] = item.alt;
+                events.push(eventObj);
             } catch (error) {
                 console.error('error fetching data', error);
             }
