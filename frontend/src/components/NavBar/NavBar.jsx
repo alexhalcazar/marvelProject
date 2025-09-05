@@ -16,7 +16,7 @@ const NavBar = () => {
                         <Link to="/comics">Comics</Link>
                     </li>
                     <li>
-                        <Link to="/Events">Events</Link>
+                        <Link to="/events">Events</Link>
                     </li>
                     <li>
                         <Link to="/marvelSnap">MarvelSnap</Link>
