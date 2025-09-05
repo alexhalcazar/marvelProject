@@ -3,6 +3,7 @@ import Home from './pages/Home/Home';
 import Characters from './pages/Characters/Characters';
 import MarvelSnap from './pages/MarvelSnap/MarvelSnap';
 import Comics from './pages/Comics/Comics';
+import Events from './pages/Events/Events';
 import NavBar from './components/NavBar/NavBar';
 
 const App = () => {
@@ -14,6 +15,7 @@ const App = () => {
                 <Route path="/characters" element={<Characters />} />
                 <Route path="/marvelSnap" element={<MarvelSnap />} />
                 <Route path="/comics" element={<Comics />} />
+                <Route path="/events" element={<Events />} />
             </Routes>
         </BrowserRouter>
     );
